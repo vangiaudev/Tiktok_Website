@@ -2,7 +2,7 @@ import Home from '~/pages/Home';
 import Following from '~/pages/Following';
 import Upload from '~/pages/Upload';
 import Search from '~/pages/Search';
-import { HeaderLayout } from '~/components/Layout';
+import { HeaderLayout } from '~/components/Layouts';
 export const publicRoutes = [
     {
         path: '/',
