@@ -13,7 +13,7 @@ $search-width-input: 292px;
 .content {
     height: 100%;
     width: var(--default-layout-header-width);
-    border: 1px solid #000;
+    padding: 0 var(--default-layout-horizontal-spacer);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -104,29 +104,33 @@ $search-width-input: 292px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    a {
-        font-weight: 700;
-        font-size: 1.6rem;
-        line-height: 22px;
-        display: block;
-    }
-    .login-btn {
-        border-radius: 4px;
-        color: rgba(255, 255, 255, 1);
-        background-color: rgba(254, 44, 85, 1);
-        font-weight: 700;
-        font-size: 1.6rem;
-        line-height: 22px;
-        margin-left: 16px;
-        min-width: 100px;
-        min-height: 36px;
+
+    .upload-btn,
+    .message-btn,
+    .notify-btn {
+        font-size: 2.2rem;
+        color: #161823;
+        background-color: transparent;
+        padding: 4px 16px;
         cursor: pointer;
     }
-    .see-more-icon {
+    .see-more-btn {
         margin-left: 16px;
         position: relative;
         cursor: pointer;
-        font-style: normal;
-        padding: 0 4px;
+        padding: 4px 8px;
+        background: transparent;
+
+        .see-more-icon {
+            cursor: pointer;
+        }
+    }
+    .user-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-left: 12px;
+        cursor: pointer;
     }
 }
