@@ -1,6 +1,7 @@
 import Home from '~/pages/Home';
 import Following from '~/pages/Following';
 import Upload from '~/pages/Upload';
+import Profile from '~/pages/Profile';
 import Search from '~/pages/Search';
 import { HeaderLayout } from '~/components/Layouts';
 export const publicRoutes = [
@@ -15,6 +16,10 @@ export const publicRoutes = [
     {
         path: '/upload',
         component: Upload,
+    },
+    {
+        path: '/@:nickname',
+        component: Profile,
         layout: HeaderLayout,
     },
     {

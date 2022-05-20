@@ -1,17 +1,12 @@
-import { useState } from 'react';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import images from '~/assets/images';
-import TippyHeadless from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faCircleXmark,
     faEllipsisVertical,
     faKeyboard,
-    faSpinner,
     faChartLine,
     faArrowRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
@@ -19,17 +14,17 @@ import {
     UploadIcon,
     MessageIcon,
     NotifyIcon,
-    SearchIcon,
     CoinIcon,
     LanguageIcon,
     UserIcon,
     QuestionIcon,
     SettingIcon,
 } from '~/components/Icons';
-import AccountItem from '~/components/AccountItem';
+
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
+import Search from '~/components/Layouts/components/Search';
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
@@ -62,7 +57,6 @@ const MENU_ITEMS = [
     },
 ];
 const Header = () => {
-    const [searchResult, setSearchResult] = useState([]);
     const handleChangeMenu = (item) => {
         console.log(item);
     };
@@ -102,34 +96,7 @@ const Header = () => {
                 <div className={cx('logo')}>
                     <img src={images.logo} alt="Tiktok" />
                 </div>
-                <TippyHeadless
-                    visible={searchResult.length > 0}
-                    interactive
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <h3 className={cx('search-label')}>Tài khoản</h3>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input type="text" placeholder="Tìm kiếm tài khoản và video" spellCheck={false} />
-                        <div className={cx('icon-wrapper')}>
-                            <button className={cx('clear')}>
-                                <FontAwesomeIcon icon={faCircleXmark} />
-                            </button>
-                            <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-                        </div>
-
-                        <button className={cx('search-btn')}>
-                            <SearchIcon />
-                        </button>
-                    </div>
-                </TippyHeadless>
+                <Search />
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>

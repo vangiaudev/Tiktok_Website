@@ -2,21 +2,24 @@ import styles from './AccountItem.module.scss';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import Image from '~/components/Image';
 const cx = classNames.bind(styles);
-const AccountItem = () => {
+const AccountItem = ({ data }) => {
+    const { avatar, nickname, fullname, tick } = data;
     return (
-        <div className={cx('wrapper')}>
+        <Link to={`/@${nickname}`} className={cx('wrapper')}>
             <span className={cx('avatar')}>
-                <img alt="#" src="https://vangiau-cover.vercel.app/img/HoaBangLangRemix.jpg" />
+                <Image alt="#" src={avatar} />
             </span>
             <div className={cx('info-user')}>
                 <h4>
-                    vangiau.recca
-                    <FontAwesomeIcon className={cx('blue-tick')} icon={faCheckCircle} />
+                    {nickname}
+                    {tick && <FontAwesomeIcon className={cx('blue-tick')} icon={faCheckCircle} />}
                 </h4>
-                <p>Văn Giàu</p>
+                <p>{fullname}</p>
             </div>
-        </div>
+        </Link>
     );
 };
 
