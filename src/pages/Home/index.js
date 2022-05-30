@@ -1,5 +1,13 @@
+import PostItem from '~/components/PostItem';
+
 const Home = (props) => {
-    return <h1>Home</h1>;
+    return (
+        <>
+            <PostItem />
+            <PostItem />
+            <PostItem />
+        </>
+    );
 };
 
 export default Home;

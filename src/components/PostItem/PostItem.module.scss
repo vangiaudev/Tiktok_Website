@@ -1,0 +1,125 @@
+.wrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding: 20px 0;
+    position: relative;
+}
+.avatar {
+    width: 56px;
+    height: 56px;
+
+    img {
+        width: 56px;
+        height: 56px;
+        border-radius: 100px;
+    }
+}
+.content {
+    display: flex;
+    width: 100%;
+    margin-left: 12px;
+    flex-direction: column;
+}
+.video {
+    display: flex;
+    align-items: flex-end;
+    &-card {
+        width: 281px;
+        height: 501px;
+        border-radius: 8px;
+        margin-right: 20px;
+    }
+    &-player {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: inherit;
+    }
+    &-action {
+        .btn-action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: transparent;
+            cursor: pointer;
+        }
+        .icon-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 2.4rem;
+            color: var(--black);
+            transition: all 200ms ease-in-out 0s;
+            background-color: rgba(22, 24, 35, 0.06);
+            margin-top: 8px;
+            margin-bottom: 6px;
+            &:hover {
+                background-color: rgba(22, 24, 35, 0.1);
+            }
+        }
+        .text {
+            color: rgba(22, 24, 35, 0.75);
+        }
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        width: 100%;
+        height: 1px;
+        transform: scaleY(0.5);
+        background: rgba(22, 24, 35, 0.2);
+    }
+}
+.info {
+    display: flex;
+    height: 80px;
+    width: 100%;
+    justify-content: space-between;
+
+    .author {
+        &-id {
+            font-weight: 700;
+            font-size: 1.8rem;
+            line-height: 2.5rem;
+            display: inline-block;
+            margin-right: 4px;
+        }
+        &-nickname {
+            font-weight: 400;
+            font-size: 1.4rem;
+            display: inline-block;
+            line-height: 2.8rem;
+        }
+    }
+    .btn-follow {
+        height: 28px;
+    }
+    .video-desc {
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+        font-weight: 400;
+    }
+    .video-music {
+        font-weight: 600;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+        margin-top: 4px;
+        margin-bottom: 12px;
+
+        &-link {
+            font-weight: 600;
+            line-height: 2.2rem;
+        }
+
+        &-icon {
+            margin-right: 5px;
+        }
+    }
+}
