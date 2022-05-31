@@ -39,49 +39,55 @@ const Search = () => {
     const handleHideResult = () => {
         setShowResult(false);
     };
+    const handleChangeInput = (e) => {
+        const value = e.target.value;
+        if (!value.startsWith(' ')) {
+            setSearchValue(value);
+        }
+    };
     return (
-        <TippyHeadless
-            visible={showResult && searchResult.length > 0}
-            onClickOutside={handleHideResult}
-            interactive
-            render={(attrs) => (
-                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
-                        <h3 className={cx('search-label')}>Tài khoản</h3>
-                        {searchResult && searchResult.map((result) => <AccountItem key={result.id} data={result} />)}
-                    </PopperWrapper>
-                </div>
-            )}
-        >
-            <div className={cx('search')}>
-                <input
-                    ref={searchRef}
-                    value={searchValue}
-                    type="text"
-                    placeholder="Tìm kiếm tài khoản và video"
-                    onChange={(e) => setSearchValue(e.target.value)}
-                    onFocus={() => setShowResult(true)}
-                    spellCheck={false}
-                    onKeyDown={(e) => {
-                        if (e.keyCode === 32 && !searchValue) {
-                            e.preventDefault();
-                        }
-                    }}
-                />
-                <div className={cx('icon-wrapper')}>
-                    {!!searchValue && !loading && (
-                        <button className={cx('clear')} onClick={handleClearText}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                    )}
-                    {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                </div>
+        //using a wrapper <div> tag around the reference element solves
+        //this by creating a new parentNode context
+        <div>
+            <TippyHeadless
+                interactive
+                visible={showResult && searchResult.length > 0}
+                onClickOutside={handleHideResult}
+                render={(attrs) => (
+                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <PopperWrapper>
+                            <h3 className={cx('search-label')}>Tài khoản</h3>
+                            {searchResult &&
+                                searchResult.map((result) => <AccountItem key={result.id} data={result} />)}
+                        </PopperWrapper>
+                    </div>
+                )}
+            >
+                <div className={cx('search')}>
+                    <input
+                        ref={searchRef}
+                        value={searchValue}
+                        type="text"
+                        placeholder="Tìm kiếm tài khoản và video"
+                        onChange={(e) => handleChangeInput(e)}
+                        onFocus={() => setShowResult(true)}
+                        spellCheck={false}
+                    />
+                    <div className={cx('icon-wrapper')}>
+                        {!!searchValue && !loading && (
+                            <button className={cx('clear')} onClick={handleClearText}>
+                                <FontAwesomeIcon icon={faCircleXmark} />
+                            </button>
+                        )}
+                        {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
+                    </div>
 
-                <button className={cx('search-btn')}>
-                    <SearchIcon />
-                </button>
-            </div>
-        </TippyHeadless>
+                    <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
+                        <SearchIcon />
+                    </button>
+                </div>
+            </TippyHeadless>
+        </div>
     );
 };
 

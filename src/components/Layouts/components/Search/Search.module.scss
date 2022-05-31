@@ -36,6 +36,7 @@ $search-width-input: 292px;
         font-size: 1.6rem;
         line-height: 22px;
         caret-color: var(--primary);
+        font-family: var(--font-default);
         &:not(:placeholder-shown) ~ .search-btn {
             color: #4c4e57;
         }

@@ -1,5 +1,6 @@
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
 import 'tippy.js/dist/tippy.css';
@@ -10,6 +11,7 @@ import Image from '~/components/Image';
 import Search from '~/components/Layouts/components/Search';
 import Menu from '~/components/Popper/Menu';
 import styles from './Header.module.scss';
+import routesConfig from '~/config/routes';
 import { MENU_ITEMS, USER_MENU } from '~/constants';
 
 const cx = classNames.bind(styles);
@@ -23,9 +25,9 @@ const Header = () => {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('content')}>
-                <div className={cx('logo')}>
+                <Link to={routesConfig.home} className={cx('logo')}>
                     <img src={images.logo} alt="Tiktok" />
-                </div>
+                </Link>
                 <Search />
                 <div className={cx('actions')}>
                     {currentUser ? (
