@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styles from './Menu.module.scss';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
@@ -24,32 +25,39 @@ const Menu = ({ children, items, onChange = () => {}, hideOnClick = false }) => 
             return <MenuItem key={index} data={item} onClick={handleClickMenuItem}></MenuItem>;
         });
     };
-    const handleBackMenu = () => {
+    const handleBack = () => {
         setHistory((prev) => [...prev].splice(0, history.length - 1));
     };
-    const handleHideMenu = () => {
+    const handleHide = () => {
         setHistory((prev) => [...prev].splice(0, 1));
     };
+    const renderResult = (attrs) => (
+        <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+            <PopperWrapper className={cx('menu-popper')}>
+                {history.length > 1 && <Header onBack={handleBack} title={currentMenu.title} />}
+                <div className={cx('menu-body')}>{renderMenuItems()}</div>
+            </PopperWrapper>
+        </div>
+    );
     return (
         <Tippy
             delay={[0, 500]}
             interactive
             placement="bottom-end"
-            onHide={handleHideMenu}
+            onHide={handleHide}
             offset={[12, 8]}
             hideOnClick={hideOnClick}
-            render={(attrs) => (
-                <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper className={cx('menu-popper')}>
-                        {history.length > 1 && <Header onBack={handleBackMenu} title="Ngôn ngữ" />}
-                        <div className={cx('menu-body')}>{renderMenuItems()}</div>
-                    </PopperWrapper>
-                </div>
-            )}
+            render={(attrs) => renderResult()}
         >
             {children}
         </Tippy>
     );
 };
 
+Menu.propTypes = {
+    children: PropTypes.node.isRequired,
+    items: PropTypes.array.isRequired,
+    onChange: PropTypes.func,
+    hideOnClick: PropTypes.bool,
+};
 export default Menu;

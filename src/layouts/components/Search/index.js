@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import * as searchServices from '~/services/searchServices';
+import * as searchServices from '~/services/searchService';
 import styles from './Search.module.scss';
 import classNames from 'classnames/bind';
 import TippyHeadless from '@tippyjs/react/headless';
@@ -7,30 +7,33 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { SearchIcon } from '~/components/Icons';
-import AccountItem from '~/components/AccountItem';
+import Result from './result';
 import { useDebounce } from '~/hooks';
 
 const cx = classNames.bind(styles);
 const Search = () => {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
-    const [showResult, setShowResult] = useState(true);
+    const [showResult, setShowResult] = useState(false);
     const [loading, setLoading] = useState(false);
+
     const searchRef = useRef();
-    const debounced = useDebounce(searchValue, 500);
+
+    const debouncedValue = useDebounce(searchValue, 500);
+
     useEffect(() => {
-        if (!debounced.trim()) {
+        if (!debouncedValue.trim()) {
             setSearchResult([]);
             return;
         }
         const fetchAPI = async () => {
             setLoading(true);
-            const result = await searchServices.search(debounced);
+            const result = await searchServices.search(debouncedValue);
             setSearchResult(result);
             setLoading(false);
         };
         fetchAPI();
-    }, [debounced]);
+    }, [debouncedValue]);
     const handleClearText = () => {
         setSearchValue('');
         setSearchResult([]);
@@ -57,8 +60,7 @@ const Search = () => {
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <PopperWrapper>
                             <h3 className={cx('search-label')}>Tài khoản</h3>
-                            {searchResult &&
-                                searchResult.map((result) => <AccountItem key={result.id} data={result} />)}
+                            <Result searchResult={searchResult} />
                         </PopperWrapper>
                     </div>
                 )}

@@ -1,6 +1,6 @@
-import Header from '~/components/Layouts/components/Header';
+import Header from '~/layouts/components/Header';
 
-const DefaultLayout = ({ children }) => {
+const HeaderLayout = ({ children }) => {
     return (
         <div>
             <Header />
@@ -11,4 +11,4 @@ const DefaultLayout = ({ children }) => {
     );
 };
 
-export default DefaultLayout;
+export default HeaderLayout;

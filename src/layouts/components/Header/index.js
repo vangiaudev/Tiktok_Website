@@ -8,10 +8,10 @@ import images from '~/assets/images';
 import Button from '~/components/Button';
 import { MessageIcon, NotifyIcon, UploadIcon } from '~/components/Icons';
 import Image from '~/components/Image';
-import Search from '~/components/Layouts/components/Search';
+import Search from '~/layouts/components/Search';
 import Menu from '~/components/Popper/Menu';
 import styles from './Header.module.scss';
-import routesConfig from '~/config/routes';
+import config from '~/config';
 import { MENU_ITEMS, USER_MENU } from '~/constants';
 
 const cx = classNames.bind(styles);
@@ -25,7 +25,7 @@ const Header = () => {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('content')}>
-                <Link to={routesConfig.home} className={cx('logo')}>
+                <Link to={config.routes.home} className={cx('logo')}>
                     <img src={images.logo} alt="Tiktok" />
                 </Link>
                 <Search />
