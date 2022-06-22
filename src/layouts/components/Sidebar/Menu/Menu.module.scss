@@ -1,0 +1,38 @@
+.wrapper {
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+}
+.menu-item {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+    .title {
+        line-height: 2.5rem;
+        margin-left: 8px;
+    }
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+        transition: background-color ease-in-out 0.2s;
+    }
+}
+
+.active {
+    color: #fe2c55 !important;
+    .icon {
+        display: none;
+    }
+    .active-icon {
+        display: flex;
+    }
+}
+.active-icon {
+    display: none;
+}
+.icon {
+    display: flex;
+}
